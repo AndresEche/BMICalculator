@@ -39,11 +39,14 @@ public class GUI{
         error.setBounds(50, 140, 130, 30);
         bmi.add(error);
 
+        JLabel health = new JLabel();
+        health.setBounds(170, 125, 150, 30);
+        bmi.add(health);
 
         bmi.setVisible(true);
         bmi.setSize(350,250);
 
-        
+
         calc.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e) {
@@ -53,17 +56,19 @@ public class GUI{
                         kg = Double.parseDouble(weightText.getText()) * 0.453592;
                         result = kg / (Math.pow(m,2));
                         show.setText("BMI: " + String.format("%.1f", result));
-                        error.setText("");
 
+                        if (result < 18.5) health.setText("(Underweight)");
+                        else if(result >= 18.5 && result < 25) health.setText("(Normal Weight)");
+                        else if (result >= 25 && result < 30) health.setText("(Overweight)");
+                        else health.setText("(Obese)");
+
+                        error.setText("");
 
                     } catch(Exception ex) {
                         error.setText("Error, Invalid Input!");
+                        show.setText("");
+                        health.setText("");
                     }
-
-
-
-
-
 
             }
         });
