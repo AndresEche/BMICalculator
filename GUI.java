@@ -35,18 +35,36 @@ public class GUI{
         bmi.add(calc);
         bmi.add(show);
 
+        JLabel error = new JLabel();
+        error.setBounds(50, 140, 130, 30);
+        bmi.add(error);
+
+
         bmi.setVisible(true);
         bmi.setSize(350,250);
 
-
+        
         calc.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e) {
-                double m = Double.parseDouble(heightText.getText()) * 0.0254;
-                double kg = Double.parseDouble(weightText.getText()) * 0.453592;
-                double result = kg / (Math.pow(m,2));
+                double m, kg, result= 0;
+                    try {
+                        m = Double.parseDouble(heightText.getText()) * 0.0254;
+                        kg = Double.parseDouble(weightText.getText()) * 0.453592;
+                        result = kg / (Math.pow(m,2));
+                        show.setText("BMI: " + String.format("%.1f", result));
+                        error.setText("");
 
-                show.setText("BMI: " + String.format("%.1f", result));
+
+                    } catch(Exception ex) {
+                        error.setText("Error, Invalid Input!");
+                    }
+
+
+
+
+
+
             }
         });
 
