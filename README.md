@@ -1,2 +1,2 @@
 # BMICalculator
-Program created to calculate BMI
+Program created to calculate Body Mass Index
